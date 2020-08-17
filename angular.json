@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "OnBoardingPart1"
+    }
+  },
+  "defaultProject": "OnBoardingPart1",
+  "cli": {
+    "analytics": "29ffae7d-60fe-484a-ba1c-450f33d6f2b7"
+  }
 }
