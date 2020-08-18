@@ -1,1 +1,14 @@
-<p>userlist works!</p>
+<div class="container-fluid">
+  <div class="container">
+    <div class="center">
+      <h1>List of Users</h1>
+      <ol class="users" (click)="userSelect()">
+        <li *ngFor="let user of users; let i = index">{{user.login}}
+          <img class="image" *ngIf="imageShow" src={{user.avatar_url}} alt="User Avatar">
+          <button class="edit" type="submit" (click)="editUser(user.id)">&hellip;</button>
+          <button class="close" type="submit" (click)="deleteUser(i)">&times;</button>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
