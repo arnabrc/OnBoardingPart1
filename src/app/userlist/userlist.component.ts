@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError, Subscription } from 'rxjs';
@@ -8,6 +8,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { EditDialogComponent } from '../dialogues/edit-dialog/edit-dialog.component';
 import { Router, ActivatedRoute, NavigationStart, NavigationEnd } from '@angular/router';
 import { browserRefresh } from '../app.component';
+import { AddUserComponent } from '../add-user/add-user.component';
 
 @Component({
   selector: 'app-userlist',
@@ -22,8 +23,9 @@ export class UserlistComponent implements OnInit {
   editBtns: any;
   imageShow: boolean = false;
   name: string;
-  subscription: Subscription;
   public browserRefresh: boolean;
+  @ViewChild('addUserComp') addUserComp = AddUserComponent;
+  childHide: boolean = true;
 
   constructor(
     private apiService: ApiService,
@@ -107,5 +109,15 @@ export class UserlistComponent implements OnInit {
         });
       }
     });
+  }
+
+  addUser() {
+    this.childHide = false;
+    // this.router.navigate(['/adduser']);
+  }
+
+  addNewUser(event: any) {
+    this.childHide = true;
+    this.users.push(event);
   }
 }

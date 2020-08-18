@@ -43,10 +43,20 @@ ol li:hover {
 }
 
 button {
+    margin: 1vw;
     background: red;
     color: white;
     justify-content: center;
     align-items: center;
+}
+
+.add {
+    margin: 1vw;
+    background: red;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    vertical-align: center;
 }
 
 

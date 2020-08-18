@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row p-0 m-0">
+  <div class="col-sm"></div>
+    <form [formGroup]="profileFormEdit" #myForm="ngForm">
+      <label>
+        Login:
+        <input type="login" id="login" class="form-control" formControlName="login" placeholder="{{login}}" required>
+      </label>
+      <br><br>
+        <label>
+          ID:
+          <input type="id" id="id" class="form-control" formControlName="id" placeholder="{{id}}" required>
+        </label>
+      <br><br>
+      <button type="button" (click)="onSubmit()">Submit</button>
+      <br><br>
+      <button type="button" (click)="onCancel()">Cancel</button>
+    </form>
+    <hr>
+  </div>
+  <div class="col-sm"></div>
+</div>

@@ -1,4 +1,4 @@
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ModuleWithProviders } from '@angular/core';
@@ -48,6 +48,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { DeleteDialogComponent } from './dialogues/delete-dialog/delete-dialog.component';
 import { EditDialogComponent } from './dialogues/edit-dialog/edit-dialog.component';
+import { AddUserComponent } from './add-user/add-user.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { EditDialogComponent } from './dialogues/edit-dialog/edit-dialog.compone
     DashboardComponent,
     UserlistComponent,
     DeleteDialogComponent,
-    EditDialogComponent
+    EditDialogComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,
@@ -64,6 +66,7 @@ import { EditDialogComponent } from './dialogues/edit-dialog/edit-dialog.compone
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     MatAutocompleteModule,
     MatBadgeModule,
     MatButtonModule,
