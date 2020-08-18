@@ -6,7 +6,7 @@
         <li *ngFor="let user of users; let i = index">{{user.login}}
           <img class="image" *ngIf="imageShow" src={{user.avatar_url}} alt="User Avatar">
           <button class="edit" type="submit" (click)="editUser(user.id)">&hellip;</button>
-          <button class="close" type="submit" (click)="deleteUser(i)">&times;</button>
+          <button class="close" type="submit" (click)="openDialog(i)">&times;</button>
         </li>
       </ol>
     </div>
