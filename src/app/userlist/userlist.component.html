@@ -4,9 +4,9 @@
       <h1>List of Users</h1>
       <ol class="users" (click)="userSelect()">
         <li *ngFor="let user of users; let i = index">{{user.login}}
-          <img class="image" *ngIf="imageShow" src={{user.avatar_url}} alt="User Avatar">
-          <button class="edit" type="submit" (click)="editUser(user.id)">&hellip;</button>
-          <button class="close" type="submit" (click)="openDialog(i)">&times;</button>
+          <img class="image" *ngIf="imageShow && !imageShowStop" src={{user.avatar_url}} alt="User Avatar">
+          <button class="edit" type="submit" (click)="editDialog(user.id)">&hellip;</button>
+          <button class="close" type="submit" (click)="deleteDialog(i)">&times;</button>
         </li>
       </ol>
     </div>

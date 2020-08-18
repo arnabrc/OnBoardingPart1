@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { UserlistComponent, DialogData } from '../../userlist/userlist.component';
+import { UserlistComponent } from '../../userlist/userlist.component';
 
 @Component({
   selector: 'app-delete-dialog',

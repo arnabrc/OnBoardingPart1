@@ -1,14 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { throwError } from 'rxjs';
+import { throwError, Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../dialogues/delete-dialog/delete-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
-export interface DialogData {
-  confirmation: string;
-}
+import { EditDialogComponent } from '../dialogues/edit-dialog/edit-dialog.component';
+import { Router, ActivatedRoute, NavigationStart, NavigationEnd } from '@angular/router';
+import { browserRefresh } from '../app.component';
 
 @Component({
   selector: 'app-userlist',
@@ -17,15 +16,28 @@ export interface DialogData {
 })
 
 export class UserlistComponent implements OnInit {
-  users: [any];
+  users: any[];
   closebtns: any;
   closeBtns: any;
   editBtns: any;
-  imageShow: boolean;
+  imageShow: boolean = false;
+  name: string;
+  subscription: Subscription;
+  public browserRefresh: boolean;
 
-  constructor(private apiService: ApiService, public dialog: MatDialog, private snackBar: MatSnackBar) { }
+  constructor(
+    private apiService: ApiService,
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar,
+    public router: Router,
+    public route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
+    this.browserRefresh = browserRefresh;
+    if (this.browserRefresh) {
+      this.router.navigate(['/dashboard']);
+    }
     this.apiService.getUsers().subscribe(data => {
       this.users = data.sort((n1, n2) => n1.id > n2.id);
     }, (err) => {
@@ -48,17 +60,28 @@ export class UserlistComponent implements OnInit {
     this.imageShow = !this.imageShow;
   }
 
-  editUser(id: any) {
-    this.imageShow = false;
-    window.alert('Edit: ' + id);
+  editUser(id: any, res: string) {
+    this.users.filter(user => user.id === id)[0].login = res;
+  }
+
+  editDialog(id: any) {
+    const dialogRef = this.dialog.open(EditDialogComponent, {
+      width: '250px',
+      data: { name: this.users.filter(user => user.id === id)[0].login }
+    });
+
+    dialogRef.afterClosed().subscribe(res => {
+      if (res) {
+        this.editUser(id, res);
+      }
+    });
   }
 
   deleteUser(id: any) {
-    this.imageShow = false;
     this.users.splice(id, 1);
   }
 
-  openDialog(id: any) {
+  deleteDialog(id: any) {
     const user = this.users[id];
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
       data: {

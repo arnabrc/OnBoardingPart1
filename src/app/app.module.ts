@@ -47,13 +47,15 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { DeleteDialogComponent } from './dialogues/delete-dialog/delete-dialog.component';
+import { EditDialogComponent } from './dialogues/edit-dialog/edit-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     UserlistComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    EditDialogComponent
   ],
   imports: [
     BrowserModule,
